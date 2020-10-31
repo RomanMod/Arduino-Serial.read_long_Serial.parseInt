@@ -1,0 +1,31 @@
+// переменная "dataIn" для хранения данных из Serial
+// Unsigned long используется для хранения положительных целых чисел в диапазоне от 0 до 4,294,967,295 
+// и занимает 32 бита (4 байта) в памяти.
+// int может хранить числа от -32 768 до 32 767 
+
+unsigned long a;
+
+void setup() {
+  Serial.begin(9600);
+
+  // При вызове parseInt() задержка ожидания последующего символа по умолчанию 1 секунда.
+  // Функцией setTimeout() можно уменьшить эту задержку. Например на 4 миллисекунды, setTimeout(4);.
+  // Чем выше скорость Serial.begin, тем меньше потребуется значение setTimeout.
+  
+  Serial.setTimeout(4);
+}
+
+void loop()
+{
+  if (Serial.available())
+  {
+    dataIn = Serial.parseInt();
+    if (dataIn == 333){
+      Serial.println("ok");
+    }
+    if (dataIn == 999){
+      Serial.println("okay");
+    }
+    Serial.println(dataIn);
+  }
+}
